@@ -30,14 +30,19 @@ contract Furance is Ownable {
 
   uint constant DECIMAL_MULTIPLIER=1e18;
 
+  constructor () public {
+    powered = true;
+  }
+
   function _sqrt(uint x) internal pure returns (uint y) {
-    uint z = x >> 1 + (x & 1);
+    uint z = (x + 1)>> 1;
+    if ( x+1 == 0) z = 1<<255;
     y = x;
     while (z < y) {
       y = z;
       z = (x / z + z) >> 1;
     }
-    y = y * 1e9;
+    y=y*1e9;
   }
 
   function _pown(uint x, uint z) internal pure returns(uint) {
@@ -88,10 +93,11 @@ contract Furance is Ownable {
   function bindPyro(address pyro_) public returns(bool) {
     require(msg.sender == address(root));
     pyro = IPyroToken(pyro_);
+    return true;
   }
 
   function _kappa(token storage t) internal view returns(uint) {
-    return (t.c + t.kappa_0 * t.w) / (t.b + t.w);
+    return (t.c + t.kappa_0 * t.w /DECIMAL_MULTIPLIER ) * DECIMAL_MULTIPLIER/ (t.b + t.w);
   }
 
 
@@ -100,24 +106,24 @@ contract Furance is Ownable {
     uint b_i = value;
     uint r_is = t.r * _pown(alpha, t.blockNumber - block.number) / DECIMAL_MULTIPLIER;
     uint r_i = r_is + value;
-    uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is));
+    uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is))/ DECIMAL_MULTIPLIER;
     uint kappa = _kappa(t);
-    if (c_i > b_i*kappa) c_i = b_i*kappa;
+    if (c_i > b_i*kappa/DECIMAL_MULTIPLIER) c_i = b_i*kappa/DECIMAL_MULTIPLIER;
     return c_i;
   }
 
 
 
-  function burn(address token_, uint value, uint minimalPyroValue) public returns (bool) {
+  function burn(address token_, uint value, uint minimalPyroValue) public onlyPowered returns (bool) {
     require(IERC20(token_).transferFrom(msg.sender, address(this), value));
     token storage t = tokens[token_];
     require(t.enabled);
     uint b_i = value;
     uint r_is = t.r * _pown(alpha, t.blockNumber - block.number) / DECIMAL_MULTIPLIER;
     uint r_i = r_is + value;
-    uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is));
+    uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is)) / DECIMAL_MULTIPLIER;
     uint kappa = _kappa(t);
-    if (c_i > b_i*kappa) c_i = b_i*kappa;
+    if (c_i > b_i*kappa/DECIMAL_MULTIPLIER) c_i = b_i*kappa/DECIMAL_MULTIPLIER;
     require(c_i >= minimalPyroValue);
     t.b += b_i;
     t.c += c_i;
@@ -127,5 +133,9 @@ contract Furance is Ownable {
     emit Burn(msg.sender, token_, value, c_i);
     return true;
   } 
+
+  function addFuel(address token_, uint a, uint kappa0, uint w) public onlyOwner onlyPowered returns (bool) {
+    tokens[token_] = token(true, a, 0, 0, 0, kappa0, w, block.number);
+  }
 
 }
