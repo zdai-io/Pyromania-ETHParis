@@ -47,7 +47,7 @@ function checkAndInstantiateWeb3() {
   try {
     if (window.ethereum !== 'undefined') {
       console.log("Using Metamask's web3 provider");
-      return new Web3(window.ethereum.currentProvider);
+      return new Web3(window.ethereum);
     } else {
       console.warn('No web3 detected. Falling back to http://localhost:8545.');
       return new Web3(new this.Web3.providers.HttpProvider('http://localhost:8545'));
