@@ -3,17 +3,14 @@
 
 var w3, myAddress, myContract;
 
-$(document).ready(async () => {
+$(document).ready(() => {
   w3 = checkAndInstantiateWeb3();
   connect();
-
-  debugger
-  const allowance = await fuelToken.methods.allowance(myAddress, spender).call();
-  console.log(allowance);
 });
 
-function checkAllowance(){
-
+async function checkAllowance(){
+  const allowance = await fuelToken.methods.allowance(myAddress, spender).call();
+  console.log(allowance);
 }
 
 // DEPLOY NEW CONTRACT
@@ -44,13 +41,16 @@ async function connect() {
   try {
     const accounts = await w3.eth.getAccounts();
     window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
-    window.spender = furanceData.networks["4"];
-    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"], /* { from: myAddress }*/);
-    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceData.networks["4"], /*{ from: myAddress }*/);
+    window.spender = furanceData.networks["4"].address;
+    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"].address, /* { from: myAddress }*/);
+    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceData.networks["4"].address, /*{ from: myAddress }*/);
 
     if (!myAddress) {
       alert('Кошелёк не найден, войдите в Метамаск и создайте кошелёк!');
     }
+
+    checkAllowance();
+
   } catch (err) {
     console.error(err);
   }

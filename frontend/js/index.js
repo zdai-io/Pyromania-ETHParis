@@ -1,3 +1,12 @@
+$(document).ready(function() {
+  shitTokens.forEach(function (item) {
+    $('#slcBurnToken').append($('<option value="'+
+      item.address+'">'+
+      item.tiker+'</option>'
+    ));
+  });
+});
+
 // (async () => {
 //   const accounts = await web3.eth.getAccounts();
 //   const netid = await web3.eth.net.getId();
