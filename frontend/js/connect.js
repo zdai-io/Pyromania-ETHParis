@@ -6,6 +6,11 @@ var w3, myAddress, myContract;
 $(document).ready(() => {
   w3 = checkAndInstantiateWeb3();
   connect();
+
+  $("#burnBtn").click( function() {
+      debugger
+      burn();
+  })
 });
 
 async function checkAllowance(){
@@ -13,7 +18,31 @@ async function checkAllowance(){
   console.log(allowance);
 }
 
-// DEPLOY NEW CONTRACT
+
+async function increaseAllowance(){
+  await fuelToken.methods.increaseAllowance(spender, "57896044618658097711785492504343953926634992332820282019728792003956564819968").send();
+  checkAllowance();
+}
+
+async function burn(){
+  const toBN = w3.utils.toBN;
+  const toWei = w3.utils.toWei;
+  const fromWei = w3.utils.fromWei;
+
+  //let estimated = await furance.methods.estimateMintAmount(fuel.options.address, burnAmount).call();
+  // console.log(estimated);
+  let fuel = fuelToken;
+  let burnAmount = toWei("4");
+  let estimated = toBN(0);
+  await furanceToken.methods.burn(fuel.options.address, burnAmount, toBN(estimated).mul(toBN("9")).div(toBN("10")).toString()).send();
+}
+
+
+// $("#slcBurnToken").change((a, b) => {
+//   console.log($("#slcBurnToken").val());
+// });
+
+// DEPLOY NEW CONTRACT0xfcb83a35971680335626287a87B2d10B4234B6Ed
 // $('#deployBtn').click(() => {
 //   try {
 //     resetContractData();                                          // Очищаем старые данные
@@ -42,14 +71,16 @@ async function connect() {
     const accounts = await w3.eth.getAccounts();
     window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
     window.spender = furanceData.networks["4"].address;
-    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"].address, /* { from: myAddress }*/);
-    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceData.networks["4"].address, /*{ from: myAddress }*/);
+
+    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"].address,  { from: myAddress });
+    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceData.networks["4"].address, { from: myAddress });
 
     if (!myAddress) {
       alert('Кошелёк не найден, войдите в Метамаск и создайте кошелёк!');
     }
 
-    checkAllowance();
+    // checkAllowance();
+    // increaseAllowance();
 
   } catch (err) {
     console.error(err);

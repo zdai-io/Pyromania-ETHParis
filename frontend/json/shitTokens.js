@@ -1,5 +1,12 @@
 var shitTokens = [
   {
+    "tiker": "FUEL",
+    "name": "FuelToken",
+    "marketCup": 1183110.6,
+    "totalSupply": 2000000000,
+    "address": "0xfcb83a35971680335626287a87B2d10B4234B6Ed"
+  },
+  {
     "tiker": "CAT",
     "name": "BitClave",
     "marketCup": 1183110.6,
