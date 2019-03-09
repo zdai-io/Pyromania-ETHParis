@@ -8,6 +8,17 @@ body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+html,
+body {
+    height: 100%;
+
+  background-color: #0b0c0d !important;
+}
+.btn-primary{
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
 h1,
 h2,
 h3,
@@ -23,8 +34,8 @@ header.masthead {
   background-color: #343a40;
   background: url("../assets/fire.jpeg") no-repeat center center;
   background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  /* padding-top: 8rem;
+  padding-bottom: 8rem; */
 }
 
 header.masthead .overlay {
@@ -44,7 +55,7 @@ header.masthead h1 {
 @media (min-width: 768px) {
   header.masthead {
     padding-top: 12rem;
-    padding-bottom: 12rem;
+    /* padding-bottom: 12rem; */
   }
   header.masthead h1 {
     font-size: 3rem;
