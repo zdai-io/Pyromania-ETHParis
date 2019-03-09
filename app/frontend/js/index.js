@@ -113,8 +113,10 @@ function GetTiketByAddress(address){
 }
 
 function BuyOn0x(){
-  zeroExInstant.render({
-    orderSource: 'https://api.radarrelay.com/0x/v2/',
-    availableAssetDatas: ['0xf47261b00000000000000000000000005ca9a71b1d01849c0a95490cc00559717fcf0d1d']
-    }, 'body');
+  window.open("./0x.html");
+  //  zeroExInstant.render({
+  //   orderSource: 'https://api.radarrelay.com/0x/v2/',
+  //   availableAssetDatas: ['0xf47261b00000000000000000000000005ca9a71b1d01849c0a95490cc00559717fcf0d1d'],
+  //   defaultSelectedAssetData: '0xf47261b00000000000000000000000005ca9a71b1d01849c0a95490cc00559717fcf0d1d',
+  //   }, 'body');
 }
