@@ -1,10 +1,5 @@
 $(document).ready(function() {
-  shitTokens.forEach(function (item) {
-    $('#slcBurnToken').append($('<option value="'+
-      item.address+'">'+
-      item.tiker+'</option>'
-    ));
-  });
+
 
   UpdateListOfBurned();
 });
@@ -86,12 +81,6 @@ function UpdateResultAmount(amount) {
     $('#iptResToken').val(amount);
 }
 
-function Burn() {
-  try {
-    var tokenAddress= $('#iptResToken').val();
-
-  } catch (err) { alert(err.message);  }
-}
 
 function UpdateListOfBurned(){
   burnResults.forEach(function (item) {
