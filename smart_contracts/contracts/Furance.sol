@@ -93,7 +93,7 @@ contract Furance is Ownable {
   function estimateMintAmount(address token_, uint value) public view returns(uint) {
     token storage t = tokens[token_];
     uint b_i = value;
-    uint r_is = t.r * _pown(alpha, t.blockNumber - block.number) / DECIMAL_MULTIPLIER;
+    uint r_is = t.r * _pown(alpha, block.number - t.blockNumber) / DECIMAL_MULTIPLIER;
     uint r_i = r_is + value;
     uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is))/ DECIMAL_MULTIPLIER;
     uint kappa = _kappa(t);
@@ -102,14 +102,13 @@ contract Furance is Ownable {
   }
 
 
-
   function burn(address token_, uint value, uint minimalPyroValue) public notExitgushed returns (bool) {
     require(IERC20(token_).transferFrom(msg.sender, address(this), value));
     token storage t = tokens[token_];
     require(t.enabled);
     uint b_i = value;
-    uint r_is = t.r * _pown(alpha, t.blockNumber - block.number) / DECIMAL_MULTIPLIER;
-    uint r_i = r_is + value;
+    uint r_is = t.r * _pown(alpha, block.number - t.blockNumber) / DECIMAL_MULTIPLIER;
+    uint r_i = r_is + b_i;
     uint c_i = t.a*(_sqrt(r_i) - _sqrt(r_is)) / DECIMAL_MULTIPLIER;
     uint kappa = _kappa(t);
     if (c_i > b_i*kappa/DECIMAL_MULTIPLIER) c_i = b_i*kappa/DECIMAL_MULTIPLIER;
@@ -119,7 +118,7 @@ contract Furance is Ownable {
     t.r = r_i;
     t.blockNumber = block.number;
     pyro.mint(msg.sender, c_i);
-    emit Burn(msg.sender, token_, value, c_i);
+    emit Burn(msg.sender, token_, b_i, c_i);
     return true;
   } 
 

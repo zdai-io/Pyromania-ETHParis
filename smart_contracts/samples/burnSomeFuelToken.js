@@ -26,12 +26,17 @@ const fromWei = web3.utils.fromWei;
   const pyro = new web3.eth.Contract(pyroData.abi, pyroData.networks[netid].address, { from: accounts[0] });
 
 
-  await fuel.methods.increaseAllowance(furance.options.address, toWei("1")).send();
-  const estimated = await furance.methods.estimateMintAmount(fuel.options.address, toWei("1")).call();
 
-  console.log(fromWei(await pyro.methods.balanceOf(accounts[0]).call()));
-  await furance.methods.burn(fuel.options.address, toWei("1"), toBN(estimated).mul(toBN("9")).div(toBN("10")).toString()).send();
-  console.log(fromWei(await pyro.methods.balanceOf(accounts[0]).call()));
+  let burnAmount = toWei("4");
+  await fuel.methods.increaseAllowance(furance.options.address, burnAmount).send();
+  let estimated = await furance.methods.estimateMintAmount(fuel.options.address, burnAmount).call();
+  console.log(`Burning ${fromWei(burnAmount)} fuel tokens. Estimated mint of pyroToken is ${fromWei(estimated)}.`);
+  estimated = toBN(0);
+  let balanceBefore = await pyro.methods.balanceOf(accounts[0]).call();
+  await furance.methods.burn(fuel.options.address, burnAmount, toBN(estimated).mul(toBN("9")).div(toBN("10")).toString()).send();
+  let balanceAfter = await pyro.methods.balanceOf(accounts[0]).call();
+
+  console.log(`Burned ${fromWei(burnAmount)} fuel tokens. Minted ${fromWei(toBN(balanceAfter).sub(toBN(balanceBefore)))} pyro tokens.`);
 
 
   process.exit();

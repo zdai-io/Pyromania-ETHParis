@@ -15,5 +15,5 @@ module.exports = async function (deployer, network, accounts) {
   await deployer.deploy(FuelToken);
   const fuel = await FuelToken.deployed();
   await pyro.addFurance(furance.address);
-  await furance.addFuel(fuel.address, web3.utils.toWei("1"), web3.utils.toWei("1"), web3.utils.toWei("1"));
+  await furance.addFuel(fuel.address, web3.utils.toWei("1"), web3.utils.toWei("2"), web3.utils.toWei("1000000"));
 };
