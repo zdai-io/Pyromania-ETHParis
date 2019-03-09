@@ -4,8 +4,7 @@ if (env.NODE_ENV !== 'production') {
 }
 
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const fs = require("fs");
-const Web3 = require("web3");
+
 const web3 = new Web3(new HDWalletProvider(env.MNEMONIC, env.ETHEREUM_RPC, 0, 10));
 
 const toBN = web3.utils.toBN;
@@ -16,8 +15,8 @@ const fromWei = web3.utils.fromWei;
 (async () => {
   const accounts = await web3.eth.getAccounts();
   const netid = await web3.eth.net.getId();
-  const furanceData = JSON.parse(fs.readFileSync("build/contracts/Furance.json", "utf8"));
-  const fuelData = JSON.parse(fs.readFileSync("build/contracts/FuelToken.json", "utf8"));
+  const furanceData = JSON.parse(fs.readFileSync("eth/contracts/Furance.json", "utf8"));
+  const fuelData = JSON.parse(fs.readFileSync("eth/contracts/FuelToken.json", "utf8"));
 
 
   async function isUnlocked(token, owner, spender) {

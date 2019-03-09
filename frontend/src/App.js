@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Web3 from 'web3'
+var tokenList = require('./json/tokens.json'); 
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tokens: [
-        {
-          value: "0x000",
-          name:"T1",
-        }, 
-        {
-          value: "0x002",
-          name:"T2",
-        }, 
-        {
-          value: "0x003",
-          name:"T3",
-        }, 
-      ],
+      tokens: tokenList,
       selectedToken: "0x000",
       tokenAmount: 0,
       resultAmount: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
+
+    this.isWeb3 = true; //If metamask is installed  
+    this.isWeb3Locked = false; //If metamask account is locked
   }
 
   handleChange(event) {
@@ -43,23 +36,19 @@ class App extends Component {
   }
 
   Unlock() {
+
     alert("unlock");
   }
 
   getTokenList() {
-    fetch("http://localhost:26854/api/premiershipteams")
-      .then((response) => {
-        return response.json();
-      })
-      .then(data => {
-        // let tokensFromApi = data.map(team => { return {value: team, display: team} })
-        // this.setState({ teams: [{value: '', display: '(Select your favourite team)'}].concat(teamsFromApi) });
-      }).catch(error => {
-        console.log(error);
-      });
+    var fs = require('fs');
+    const tokens = JSON.parse(fs.readFileSync('json/tokens.json', 'utf8'));
+
+    this.state.tokens = tokens;
   }
 
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -77,11 +66,11 @@ class App extends Component {
               <div className="col">
                 <select value={this.state.selectedToken} 
                   onChange={(e) => this.setState({selectedToken: e.target.value})}>
-                  {this.state.tokens.map((token) => <option key={token.value} value={token.value}>{token.name}</option>)}
+                  {this.state.tokens.map((token) => <option key={token.address} value={token.address}>{token.name}</option>)}
                 </select>
               </div>
               <div className="col">
-                <input type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}></input>
+                <input type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <input type="button" value="Unlock" onClick={()=>this.Unlock()}/>
@@ -90,7 +79,7 @@ class App extends Component {
                 <p> -> </p>
               </div>
               <div className="col">
-                <input type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}></input>
+                <input type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <p>PTK</p>
@@ -101,9 +90,9 @@ class App extends Component {
             </div>
             <div className="row Raiting">
               <div className="col">
-                <tabel>
+                <table>
                   <th></th>
-                </tabel>
+                </table>
               </div>
             </div>
           </div>
