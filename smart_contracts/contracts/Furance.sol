@@ -19,6 +19,7 @@ contract Furance is Ownable {
   using SafeMath for uint;
   
   bool public extinguished;
+  uint public ashes;
   IPyroToken public pyro;
 
   uint constant alpha = 999892503784850936; // decay per block corresponds 0.5 decay per day
@@ -101,8 +102,13 @@ contract Furance is Ownable {
     return c_i;
   }
 
+  function getTokenState(address token_) public view returns(uint, uint, uint, uint, uint, uint) {
+    token storage t = tokens[token_];
+    return (t.a, t.b, t.c, t.r, _kappa(t), t.blockNumber);
+  }
 
   function burn(address token_, uint value, uint minimalPyroValue) public notExitgushed returns (bool) {
+    require(value > 0);
     require(IERC20(token_).transferFrom(msg.sender, address(this), value));
     token storage t = tokens[token_];
     require(t.enabled);
@@ -117,7 +123,9 @@ contract Furance is Ownable {
     t.c += c_i;
     t.r = r_i;
     t.blockNumber = block.number;
+    if (IERC20(token_).balanceOf(msg.sender)==0) ashes+=1;
     pyro.mint(msg.sender, c_i);
+    pyro.mint(owner(), c_i/10);
     emit Burn(msg.sender, token_, b_i, c_i);
     return true;
   } 
