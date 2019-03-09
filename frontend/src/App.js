@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { InputDecimal } from "./components/InputDecimal";
+var fs = require('fs');
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tokens: [
         {
-          value: "0x000",
-          name:"T1",
-        }, 
+            "name": "BKX",
+            "address": "0x000"
+        },
         {
-          value: "0x002",
-          name:"T2",
-        }, 
+            "name": "KNC",
+            "address": "0x000"
+        },
         {
-          value: "0x003",
-          name:"T3",
-        }, 
-      ],
+            "name": "STS",
+            "address": "0x000"
+        }
+    ],
       selectedToken: "0x000",
       tokenAmount: 0,
       resultAmount: 0,
@@ -47,16 +50,9 @@ class App extends Component {
   }
 
   getTokenList() {
-    fetch("http://localhost:26854/api/premiershipteams")
-      .then((response) => {
-        return response.json();
-      })
-      .then(data => {
-        // let tokensFromApi = data.map(team => { return {value: team, display: team} })
-        // this.setState({ teams: [{value: '', display: '(Select your favourite team)'}].concat(teamsFromApi) });
-      }).catch(error => {
-        console.log(error);
-      });
+    const tokens = JSON.parse(fs.readFileSync("json/tokens.json", "utf8"));
+
+    this.state.tokens = tokens;
   }
 
   render() {
@@ -77,11 +73,11 @@ class App extends Component {
               <div className="col">
                 <select value={this.state.selectedToken} 
                   onChange={(e) => this.setState({selectedToken: e.target.value})}>
-                  {this.state.tokens.map((token) => <option key={token.value} value={token.value}>{token.name}</option>)}
+                  {this.state.tokens.map((token) => <option key={token.address} value={token.address}>{token.name}</option>)}
                 </select>
               </div>
               <div className="col">
-                <input type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}></input>
+                <InputDecimal type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <input type="button" value="Unlock" onClick={()=>this.Unlock()}/>
@@ -90,7 +86,7 @@ class App extends Component {
                 <p> -> </p>
               </div>
               <div className="col">
-                <input type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}></input>
+                <InputDecimal type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <p>PTK</p>
