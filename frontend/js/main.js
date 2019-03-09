@@ -142,3 +142,6 @@ function onDividendsWithdrawalTransactionHashReceived(hash) {
   $('#getDividendsHash a')[0].innerText = hash; // Показываем идентификатор транзакции
   $('#getDividendsHash a')[0].href = 'https://rinkeby.etherscan.io/tx/' + hash;
 }
+
+
+
