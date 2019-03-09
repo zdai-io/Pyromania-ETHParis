@@ -8,8 +8,6 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-interface IRoot {
-}
 
 interface IPyroToken {
   function mint(address, uint) external returns(bool);
@@ -18,33 +16,28 @@ interface IPyroToken {
 
 contract Furance is Ownable {
   event Burn(address indexed sender, address indexed token, uint value, uint pyroValue);
-
   using SafeMath for uint;
   
-  bool public powered;
-  IRoot public root;
+  bool public extinguished;
   IPyroToken public pyro;
 
   uint constant alpha = 999892503784850936; // decay per block corresponds 0.5 decay per day
-  
-
   uint constant DECIMAL_MULTIPLIER=1e18;
+  uint constant DECIMAL_HALFMULTIPLIER=1e9;
 
-  constructor () public {
-    powered = true;
-  }
 
   function _sqrt(uint x) internal pure returns (uint y) {
-    uint z = (x + 1)>> 1;
+    uint z = (x + 1) >> 1;
     if ( x+1 == 0) z = 1<<255;
     y = x;
     while (z < y) {
       y = z;
       z = (x / z + z) >> 1;
     }
-    y=y*1e9;
+    y = y * DECIMAL_HALFMULTIPLIER;
   }
 
+  /* solium-disable-next-line */
   function _pown(uint x, uint z) internal pure returns(uint) {
     uint res = DECIMAL_MULTIPLIER;
     uint t = z;
@@ -75,29 +68,25 @@ contract Furance is Ownable {
 
   mapping(address=>token) tokens;
 
-  modifier onlyPowered {
-    require(powered);
+  modifier notExitgushed {
+    require(!extinguished);
     _;
   }
 
-  function switchOff() public onlyOwner onlyPowered returns(bool) {
-    powered=false;
-  }
-
-  function bindRoot() public returns(bool) {
-    require(address(root)==address(0));
-    root=IRoot(msg.sender);
+  function exitgush() public onlyOwner notExitgushed returns(bool) {
+    extinguished=true;
     return true;
   }
 
-  function bindPyro(address pyro_) public returns(bool) {
-    require(msg.sender == address(root));
-    pyro = IPyroToken(pyro_);
+
+  function bind() public returns(bool) {
+    require(address(0) == address(pyro));
+    pyro = IPyroToken(msg.sender);
     return true;
   }
 
   function _kappa(token storage t) internal view returns(uint) {
-    return (t.c + t.kappa_0 * t.w /DECIMAL_MULTIPLIER ) * DECIMAL_MULTIPLIER/ (t.b + t.w);
+    return (t.c + t.kappa_0 * t.w / DECIMAL_MULTIPLIER) * DECIMAL_MULTIPLIER / (t.b + t.w);
   }
 
 
@@ -114,7 +103,7 @@ contract Furance is Ownable {
 
 
 
-  function burn(address token_, uint value, uint minimalPyroValue) public onlyPowered returns (bool) {
+  function burn(address token_, uint value, uint minimalPyroValue) public notExitgushed returns (bool) {
     require(IERC20(token_).transferFrom(msg.sender, address(this), value));
     token storage t = tokens[token_];
     require(t.enabled);
@@ -134,7 +123,7 @@ contract Furance is Ownable {
     return true;
   } 
 
-  function addFuel(address token_, uint a, uint kappa0, uint w) public onlyOwner onlyPowered returns (bool) {
+  function addFuel(address token_, uint a, uint kappa0, uint w) public onlyOwner notExitgushed returns (bool) {
     tokens[token_] = token(true, a, 0, 0, 0, kappa0, w, block.number);
   }
 

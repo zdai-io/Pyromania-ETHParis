@@ -3,32 +3,35 @@ pragma solidity >=0.5.2;
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
-interface IRoot {
+interface IFurance {
+  function bind() external returns(bool);
 }
 
+contract PyroToken is ERC20, ERC20Detailed, ERC20Mintable, Ownable {
 
-contract PyroToken is ERC20, ERC20Detailed, ERC20Mintable {
-  event AddFurance(address furance);
-
-  IRoot public root;
+  bool public isProduction;
+  
+  modifier notProduction() {
+    require(!isProduction);
+    _;
+  }
  
 
   constructor() ERC20Detailed("PyroToken", "PYRO", 18) public {
     _removeMinter(msg.sender);
   }
 
-  function bindRoot() public returns(bool) {
-    require(address(root)==address(0));
-    root=IRoot(msg.sender);
+  function upgradeToProduction() public onlyOwner notProduction returns(bool) {
+    isProduction = true;
     return true;
   }
 
-  function addFurance(address furance_) public returns(bool) {
-    require(msg.sender == address(root));
+  function addFurance(address furance_) public onlyOwner notProduction returns(bool) {
     _addMinter(furance_);
-    emit AddFurance(furance_);
+    require(IFurance(furance_).bind());
     return true;   
   }
 
