@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Web3 from 'web3'
+var tokenList = require('./json/tokens.json'); 
 
-import { InputDecimal } from "./components/InputDecimal";
-var fs = require('fs');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tokens: [
-        {
-            "name": "BKX",
-            "address": "0x000"
-        },
-        {
-            "name": "KNC",
-            "address": "0x000"
-        },
-        {
-            "name": "STS",
-            "address": "0x000"
-        }
-    ],
+      tokens: tokenList,
       selectedToken: "0x000",
       tokenAmount: 0,
       resultAmount: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
+
+    this.isWeb3 = true; //If metamask is installed  
+    this.isWeb3Locked = false; //If metamask account is locked
   }
 
   handleChange(event) {
@@ -46,16 +36,19 @@ class App extends Component {
   }
 
   Unlock() {
+
     alert("unlock");
   }
 
   getTokenList() {
-    const tokens = JSON.parse(fs.readFileSync("json/tokens.json", "utf8"));
+    var fs = require('fs');
+    const tokens = JSON.parse(fs.readFileSync('json/tokens.json', 'utf8'));
 
     this.state.tokens = tokens;
   }
 
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -77,7 +70,7 @@ class App extends Component {
                 </select>
               </div>
               <div className="col">
-                <InputDecimal type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}/>
+                <input type="text" name="tokenAmount" value={this.state.tokenAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <input type="button" value="Unlock" onClick={()=>this.Unlock()}/>
@@ -86,7 +79,7 @@ class App extends Component {
                 <p> -> </p>
               </div>
               <div className="col">
-                <InputDecimal type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}/>
+                <input type="text" name="resultAmount" value={this.state.resultAmount} onChange={this.handleChange}/>
               </div>
               <div className="col">
                 <p>PTK</p>
@@ -97,9 +90,9 @@ class App extends Component {
             </div>
             <div className="row Raiting">
               <div className="col">
-                <tabel>
+                <table>
                   <th></th>
-                </tabel>
+                </table>
               </div>
             </div>
           </div>
