@@ -1,3 +1,14 @@
+
+
+$(document).ready(function() {
+  shitTokens.forEach(function (item) {
+    $('#slcBurnToken').append($('<option value="'+
+        item.address+'">'+
+        item.tiker+'</option>'
+    ));
+  });
+})
+
 function Unlock(){
   try {
     var tokenAddress= $('#slcBurnToken').val();
