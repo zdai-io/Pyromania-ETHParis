@@ -88,8 +88,13 @@ header.masthead h1 {
 }
 
 .testimonials {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #0b0c0d !important;
+}
+
+.burned-table{
+  background-color: #0b0c0d !important;
 }
 
 .testimonials .testimonial-item {

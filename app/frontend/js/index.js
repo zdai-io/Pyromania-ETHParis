@@ -5,6 +5,8 @@ $(document).ready(function() {
       item.tiker+'</option>'
     ));
   });
+
+  UpdateListOfBurned();
 });
 
 // (async () => {
@@ -92,5 +94,25 @@ function Burn() {
 }
 
 function UpdateListOfBurned(){
+  burnResults.forEach(function (item) {
+    $('#tableContent').append($('<tr>'+
 
+    '<td>'+GetTiketByAddress(item.tokenAddress)+'</td>'+
+    '<td>'+item.burnCount+'</td>'+
+    '<td>'+item.totalCount+'</td>'+
+    '<td>'+item.blockHeight+'</td>'+
+  '</tr>'
+    ));
+  });
+}
+
+function GetTiketByAddress(address){
+  for (var i = 0; i < shitTokens.length; i++){
+    // look for the entry with a matching `code` value
+    if (shitTokens[i].address == address){
+       // we found it
+      // obj[i].name is the matched result
+      return shitTokens[i].tiker
+    }
+  }
 }
