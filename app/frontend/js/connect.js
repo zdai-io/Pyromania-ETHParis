@@ -3,52 +3,73 @@
 
 var w3, myAddress, myContract;
 
-$(document).ready(() => {
-  w3 = checkAndInstantiateWeb3();
-  connect();
+const furanceAddresses = {
+  main: "??",
+  rinkeby: "0x3d5726c8CFd711788605078C2B9b87D5BC7161A8",
+};
 
-  w3.eth.net.getNetworkType().then((networkName) => {
-    shitTokens[networkName].forEach(function (item) {
-      $('#slcBurnToken').append($('<option value="' +
-        item.address + '">' +
-        item.tiker + '</option>'
-      ));
+// Leave as it .ready can't handle properly function that returns Promise
+$(document).ready(() => {
+  onInit()
+});
+
+async function onInit() {
+  w3 = checkAndInstantiateWeb3();
+
+  try {
+    const networkName = await w3.eth.net.getNetworkType();
+    const accounts = await w3.eth.getAccounts();
+    window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
+    window.spender = furanceAddresses[networkName];
+
+    // window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, furanceAddresses[networkName], {from: myAddress});
+    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceAddresses[networkName], {from: myAddress});
+
+    if (!myAddress) {
+      alert('Can\'t find metamask, or wallet not exist');
+    }
+
+    shitTokens[networkName].forEach((item) => {
+      $('#slcBurnToken').append($(`<option value="${item.address}">${item.tiker}</option>`));
     });
-  });
+
+  } catch (err) {
+    console.error(err);
+    return
+  }
 
 
   $("#unlockBtn").click(function () {
 
-    const accounts = await w3.eth.getAccounts();
-    window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
-    window.spender = furanceData.networks["4"].address;
+    const tokenAddress = $('#slcBurnToken').val();
+    const token = new w3.eth.Contract(fuelTokenData.abi, tokenAddress, {from: myAddress});
 
-    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"].address, {from: myAddress});
-
-    var token =
-    increaseAllowance()
+    increaseAllowance(token)
       .then(() => {
         console.log("Allowance was increased")
       })
   });
 
   $("#burnBtn").click(function () {
-    burnAmountInEther
-    burn();
+    const tokenAmount = $('#iptBurnToken').val();
+    burn(tokenAmount);
   })
-});
+}
 
-async function burn(burnAmountInEther) {
+async function burn(token, burnAmountInEther) {
   const toBN = w3.utils.toBN;
   const toWei = w3.utils.toWei;
   const fromWei = w3.utils.fromWei;
 
   //let estimated = await furance.methods.estimateMintAmount(fuel.options.address, burnAmount).call();
   // console.log(estimated);
-  let fuel = fuelToken;
+  //let fuel = fuelToken;
   let burnAmount = toWei(burnAmountInEther);
   let estimated = toBN(0);
-  await furanceToken.methods.burn(fuel.options.address, burnAmount, toBN(estimated).mul(toBN("9")).div(toBN("10")).toString()).send();
+
+  await furanceToken.methods
+    .burn(token.options.address, burnAmount, toBN(estimated).mul(toBN("9")).div(toBN("10")).toString())
+    .send();
 }
 
 
@@ -92,24 +113,7 @@ async function checkAllowance() {
 
 // INITIALISATION
 async function connect() {
-  try {
-    const accounts = await w3.eth.getAccounts();
-    window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
-    window.spender = furanceData.networks["4"].address;
 
-    window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, fuelTokenData.networks["4"].address, {from: myAddress});
-    window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceData.networks["4"].address, {from: myAddress});
-
-    if (!myAddress) {
-      alert('Кошелёк не найден, войдите в Метамаск и создайте кошелёк!');
-    }
-
-    // checkAllowance();
-    // increaseAllowance();
-
-  } catch (err) {
-    console.error(err);
-  }
 }
 
 function checkAndInstantiateWeb3() {
