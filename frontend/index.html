@@ -31,25 +31,25 @@
         </div>
         <div class="row">
           <div class="col">
-            <select>
-              <option>1</option>
-              <option>2</option>
+            <select id="slcBurnToken">
+              <option value="0x000">1</optio>
+              <option value="0x001">2</option>
             </select>
           </div>
           <div class="col">
-            <input type="text" value=0/>
+            <input type="text" id="iptBurnToken" value=0 />
           </div>
           <div class="col">
-            <input type="button" value="unlock"/>
+            <input type="button" value="unlock" id="btnUnlock"  onclick="Unlock()"/>
           </div>
           <div class="col">
             <p>-></p>
           </div>
           <div class="col">
-            <input type="text" value=0/>
+            <input type="text" id="iptResToken" value=0 />
           </div>
           <div class="col">
-            <input type="button" value="burn"/>
+            <input type="button" value="burn" id="btnBurn" onclick="Burn()"/>
           </div>
         </div>
         <div class="row">
@@ -67,6 +67,7 @@
   <script src="js/connect.js"></script>
   <script src="js/main.js"></script>
   <script src="js/events.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>
