@@ -6,11 +6,30 @@ const fileStorage = require("@skalenetwork/filestorage-js/src/index.js");
 
 const upload = require("./skaleUpload");
 
+const dF = require('./skaleDelete');
+
 const skaleFS = new fileStorage(host="http://104.248.242.242:8003");
 
 const app = express();
 
 app.use(express.static(__dirname + '/frontend'));
+
+
+app.get("/delete/0x", async (req, res, next) => {
+    let info = await dF.deleteFile("0x.html");
+    console.log(info)
+});
+
+app.get("/delete/index2", async (req, res, next) => {
+    let info = await dF.deleteFile("index2.html");
+    console.log(info)
+});
+
+
+app.get("/delete/index", async (req, res, next) => {
+    let info = await dF.deleteFile("index.html");
+    console.log(info)
+});
 
 
 app.get("/upload/0x", async (req, res, next) => {
@@ -28,9 +47,6 @@ app.get("/upload/index", async (req, res, next) => {
     let info = await upload.uploadIndex("index.html");
     console.log(info)
 });
-
-
-
 
 app.get("/", async (req, res, next) => {
 
@@ -73,7 +89,5 @@ app.get("/index2.html", async (req, res, next) => {
 
     res.sendFile(__dirname + "/skaleFiles/index2.html")
 });
-
-
 
 app.listen(80);
