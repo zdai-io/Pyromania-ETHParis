@@ -20,7 +20,7 @@ It is considered one of the key milestones between the epochs of the Enlightenme
 
 >Location Louvre, Paris
 
->It is considered one of the key milestones between the epochs of the Enlightenment (WE ARE HERE NOW) and Romanticism (ICO ERA).
+#### It is considered one of the key milestones between the epochs of the Enlightenment (WE ARE HERE NOW) and Romanticism (ICO ERA).
 
 ![Liberty Leading the People](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Liberty%20Leading%20the%20People_chart.jpg?raw=true "Liberty Leading the People
 ")
