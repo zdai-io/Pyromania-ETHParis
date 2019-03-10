@@ -127,8 +127,6 @@ We connect decentrlised hosting from Skale!
 Here is a adresses to files:
 
 > E1C12463ce9152a33fA758571595fF7fe2f047B6/index.html
-> E1C12463ce9152a33fA758571595fF7fe2f047B6/0x.html
-> E1C12463ce9152a33fA758571595fF7fe2f047B6/index2.html
 
 
 ## How we built it
