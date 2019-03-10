@@ -125,7 +125,6 @@ contract Furance is Ownable {
     t.blockNumber = block.number;
     if (IERC20(token_).balanceOf(msg.sender)==0) ashes+=1;
     pyro.mint(msg.sender, c_i);
-    pyro.mint(owner(), c_i/10);
     emit Burn(msg.sender, token_, b_i, c_i);
     return true;
   } 
