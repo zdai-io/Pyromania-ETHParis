@@ -6,7 +6,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
 
 contract FuelToken is ERC20, ERC20Detailed {
   constructor() ERC20Detailed("FuelToken", "FUEL", 18) public {
-    _mint(msg.sender, 100 * 1e18);
+    _mint(msg.sender, 1e9 * 1e18);
   }
 
   /** emulate mint for testing */

@@ -3016,12 +3016,12 @@
         }
       },
       "links": {},
-      "address": "0x8fa314b748999aE848566AdD04D77F105BBAd28d",
-      "transactionHash": "0x0443fe0a76e2838b9f3356d89fa31fa044b83a2ec9278dff1f32ccd85a10fd80"
+      "address": "0xEa0beB665d904324Bc98BDA81551ebdeBEeBF01e",
+      "transactionHash": "0x96dbc49002cc724a9adf20f87dd7b36061b12b02ffdbd7543dbe02374a425d5e"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-09T18:07:25.511Z",
+  "updatedAt": "2019-03-09T23:14:21.781Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
