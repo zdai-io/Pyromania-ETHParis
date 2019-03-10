@@ -8,6 +8,11 @@ const furanceAddresses = {
   rinkeby: "0x3d5726c8CFd711788605078C2B9b87D5BC7161A8",
 };
 
+const pyroAddresses = {
+  main: "??",
+  rinkeby: "0x5efC080ADc2e14285D7FA1DD551aC4088cc64d8f",
+};
+
 const tokens = {
   // address : tokenObj
   // Here we put tokens objects that we will initialize using addresses
@@ -24,15 +29,17 @@ async function onInit() {
   try {
     const networkName = await w3.eth.net.getNetworkType();
     const accounts = await w3.eth.getAccounts();
-    window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
+    window.myAddress = accounts[0];
     window.spender = furanceAddresses[networkName];
+    window.pyro = furanceAddresses[networkName];
 
     window.toBN = w3.utils.toBN;
     window.toWei = w3.utils.toWei;
     window.fromWei = w3.utils.fromWei;
 
-    // window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, furanceAddresses[networkName], {from: myAddress});
+
     window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceAddresses[networkName], {from: myAddress});
+    window.pyroToken = new w3.eth.Contract(pyroTokenData.abi, pyroAddresses[networkName], {from: myAddress});
 
     if (!myAddress) {
       alert('Can\'t find metamask, or wallet not exist');
@@ -65,6 +72,7 @@ async function onInit() {
     const tokenAddress = $('#slcBurnToken').val();
     const token = tokens[tokenAddress];
 
+    // Use this to mint pyro tokens
     // var x = token.methods
     //   .transfer("0x9A75BCcb9046827A9Ee9C5038b9aF16E3044b629", "0")
     //   .send().then(
@@ -88,6 +96,19 @@ async function onInit() {
       console.log("was burned")
     });
   })
+
+  startPyroTokenPolling();
+}
+
+
+function renewPyroBalance() {
+  pyroToken.methods.balanceOf(myAddress).call().then((balance) => {
+    $("#pyroBalance").text(`${web3.fromWei(balance,'ether')} Pyro`)
+  });
+}
+function startPyroTokenPolling() {
+  renewPyroBalance();
+  setInterval(renewPyroBalance, 1500);
 }
 
 async function isUnlocked(token, owner, spender) {
