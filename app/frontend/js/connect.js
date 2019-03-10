@@ -9,7 +9,7 @@ const furanceAddresses = {
 };
 
 const pyroAddresses = {
-  main: "0x54ed6d05b6ade0b39d0913ac6876e6cf16ae89a0",
+  main: "0x5e4dd41c7b32d6cf86fa6b511187fe97ed7b6acc",
   rinkeby: "0x5efC080ADc2e14285D7FA1DD551aC4088cc64d8f",
 };
 
