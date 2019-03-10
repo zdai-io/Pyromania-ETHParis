@@ -1,3 +1,9 @@
+![What is dead may never DAI.
+](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/header.png?raw=true "What is dead may never DAI.
+")
+
+
+
 # Pyromania - Time to burn
 
 ## Inspiration
@@ -13,9 +19,14 @@ We made 100% recyclable token: By deep-math crypto-economics under the hood - we
 - Get's back pyro tokens, that worth money. And it even stable because of moon math under the hood!
 - Easily buy required tokens to burn from our UI (by Bankor or 0x)
 
+We did token analytics and pick some low trading tokens. (+ some token from 0x, with notable history)
+
+> Aeternity
+> Early contributors to ethereum branched out and chose to launch a separate blockchain. The project raised funds during an ICO in the midst of ERC-20 ICO-craze. However, ultimately, existing on a separate chain meant not being part of the ecosystem and the project remains obscure. The price of a token went up and down with the mania and wobbles around the ICO-levels. However, hardly there are any Dapps written in Sophia smart contract programming language that are known to community.
+
 ## How we built it
 
-Gang of four with super skills!
+Gang of four with super skills in: solidity, node.js, ens, kubernetes, redis, 0x, skale and so on.
 
 ## Challenges we ran into
 
@@ -52,3 +63,8 @@ $\kappa_0$ and $\omega$ are initial parameters.
 ## What's next for Pyromania - Time to burn!
 
 - Add voting system, to add new tokens
+
+### Links:
+- Here is token analytics, that we made: https://docs.google.com/spreadsheets/d/1P-UbU08wB2RcWa1g7hJWoUEzLh3r-RunKxJvWFQrFq0
+- hackmd with Moon math under the hood: https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
+- Site posted here: https://Pyromania.io
