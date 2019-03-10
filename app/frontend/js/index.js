@@ -90,8 +90,7 @@ function UpdateListOfBurned(){
 
     '<td>'+tokenName+'</td>'+
     '<td>'+item.burnCount+'</td>'+
-    '<td>'+item.totalCount+'</td>'+
-    '<td>'+item.blockHeight+'</td>'+
+    '<td>'+item.mintedCount+'</td>'+
   '</tr>'
     ));
   });
