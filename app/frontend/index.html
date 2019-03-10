@@ -33,17 +33,18 @@
         <div class="row">
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">Kill it with fire !!!</h1>
-            <h1 class="mb-5">To get PyroTokens!!!</h1>
+            <h1 class="mb-5">To get Pyro Tokens!!!</h1>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
               <div class="row">
+
                 <div class="col-12 col-md-2 mb-2 mb-md-0">
                   <select style="width: 100px" class="form-control" id="slcBurnToken">
                   </select>
                 </div>
                 <div class="col-12 col-md-3">
-                  <button type="button" class="btn btn-block btn-primary" id="unlockBtn">&#128274;Unlock</button>
+                  <button type="button" class="btn btn-block btn-primary" id="unlockBtn">Unlock</button>
                 </div>
                 <div class="col-12 col-md-4 mb-2 mb-md-0" style="padding-right: 0px;">
                   <input type="text" class="form-control" placeholder="To burn" id="iptResToken">
@@ -60,7 +61,9 @@
 
     <section class="testimonials text-center bg-dark">
         <div class="container">
-            <h2 class="mb-5 text-white">Total</h2>
+          <h2 class="mb-5 text-white">
+            <span>Your balance is </span>:&nbsp;<span id="pyroBalance">0 Pyro</span>
+          </h2>
             <table class="burned-table table table-dark">
                 <thead>
                   <tr>
@@ -243,6 +246,7 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="js/furance.data.js"></script>
   <script src="js/fueltoken.data.js"></script>
+  <script src="js/pyrotoken.data.js"></script>
   <script src="js/connect.js"></script>
   <script src="js/main.js"></script>
   <script src="js/events.js"></script>
