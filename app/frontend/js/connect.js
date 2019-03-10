@@ -57,6 +57,8 @@ async function onInit() {
 
   updateLockAndBurnButtonsState();
   $("#slcBurnToken").on('change', () => {
+    updateListOfBurned();
+
     updateLockAndBurnButtonsState();
   });
   setInterval(updateLockAndBurnButtonsState, 1000);
@@ -89,9 +91,29 @@ async function onInit() {
     burn(token, tokenAmount).then(() => {
       console.log("was burned")
     });
-  })
+  });
 
-  startPyroTokenPolling();
+  // Pyro token poling
+  renewPyroBalance();
+  setInterval(renewPyroBalance, 1000);
+}
+
+function updateListOfBurned() {
+
+  const promises = burnResults.map( async (token) => {
+    return new Promise((resolve, reject) => {
+      window.furanceToken.methods.getTokenState(token.tokenAddress).call().then( (result) => {
+        const t_a = web3.fromWei(result[1]);
+        const t_b = web3.fromWei(result[2]);
+
+        resolve(`<tr><td>${token.tokenSymbol}</td><td>${t_a}</td><td>${t_b}</td></tr>`);
+      })
+    });
+  });
+
+    Promise.all(promises).then((values) => {
+      $("#tableContent").html($(values.join()));
+    });
 }
 
 async function updateLockAndBurnButtonsState() {
@@ -105,21 +127,21 @@ async function updateLockAndBurnButtonsState() {
   unlockBtn.prop('disabled', tokenIsUnlocked);
   burnBtn.prop('disabled', !tokenIsUnlocked);
   unlockBtn.html(tokenIsUnlocked ? "Unlocked &#128275;" : "Unlock");
-  console.log(tokenIsUnlocked);
+  //console.log(tokenIsUnlocked);
 }
 
-window.isPyroBalcnceInitialized = false;
-window.pyroBalcnce = "";
+window.isPyroBalanceeInitialized = false;
+window.pyroBalance = "";
 function renewPyroBalance() {
   pyroToken.methods.balanceOf(myAddress).call().then((balance) => {
 
     const ethBalance = web3.fromWei(balance, 'ether').toString();
     $("#pyroBalance").text(`${ethBalance} Pyro`);
 
-    if(window.pyroBalcnce !== ethBalance ){
-      window.pyroBalcnce = ethBalance;
+    if(window.pyroBalance !== ethBalance ){
+      window.pyroBalance = ethBalance;
 
-      if(isPyroBalcnceInitialized){
+      if(isPyroBalanceeInitialized){
         // Run Animation
         $("#status").clearQueue().queue(function (next) {
           $(this).addClass("alert"); next();
@@ -127,15 +149,9 @@ function renewPyroBalance() {
           $(this).removeClass("alert"); next();
         });
       }
-
-      window.isPyroBalcnceInitialized = true;
+      window.isPyroBalanceeInitialized = true;
     }
   });
-}
-
-function startPyroTokenPolling() {
-  renewPyroBalance();
-  setInterval(renewPyroBalance, 1000);
 }
 
 async function isUnlocked(token, owner, spender) {

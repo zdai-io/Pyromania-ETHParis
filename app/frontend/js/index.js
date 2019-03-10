@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-
-  UpdateListOfBurned();
   UpdateFreeSlots(100);
 });
 
@@ -82,33 +79,8 @@ function UpdateResultAmount(amount) {
     $('#iptResToken').val(amount);
 }
 
-
-function UpdateListOfBurned(){
-  burnResults.forEach(function (item) {
-    var tokenName =GetTiketByAddress(item.tokenAddress);
-    $('#tableContent').append($('<tr>'+
-
-    '<td>'+tokenName+'</td>'+
-    '<td>'+item.burnCount+'</td>'+
-    '<td>'+item.mintedCount+'</td>'+
-  '</tr>'
-    ));
-  });
-}
-
 function UpdateFreeSlots(amount){
   $("#freeSlotsCount").text(amount);
-}
-
-function GetTiketByAddress(address){
-  for (var i = 0; i < shitTokens.length; i++){
-    // look for the entry with a matching `code` value
-    if (shitTokens[i].address == address){
-       // we found it
-      // obj[i].name is the matched result
-      return shitTokens[i].tiker
-    }
-  }
 }
 
 function BuyOn0x(){
