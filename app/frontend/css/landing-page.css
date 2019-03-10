@@ -19,6 +19,9 @@ body {
   border-color: #dc3545;
 }
 
+.masthead .container{
+  margin-top: -10rem;
+}
 h1,
 h2,
 h3,
