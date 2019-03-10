@@ -122,16 +122,15 @@ Gang of four with super skills in solidity, node.js, ens, kubernetes, redis, 0x,
 
 Cryptoeconimic math way differs from classic economic. Please look into the description for formula.
 
-- No oracles!
-- we eqilize my my different amount of tokens in difreenet time periods and different kind of tokens.
-- WIth all thse variuable parameters our cryptoeconomics should be stable and reliable. So it was a real math challage to achieve that.
+- No oracles! So nobody can compromise it by sepculations
+- Price of our token is stable: even when different kinds of shit tokens are being burned at the different time points, it still results in the same price calculations for our own token once it is minted.
+- With all these variable parameters our crypto economics should be stable and reliable. So it was a real math challenge to achieve that.
 
 ## Accomplishments that we're proud of
 
 - Pure math under the hood
 - Ability to clean up blockchain and free-up space
-
-
+Cryptoeconimic math way differs from classic economic. Please look into the description for formula.
 
 
 
