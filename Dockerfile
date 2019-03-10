@@ -1,6 +1,10 @@
-FROM nginx:1.15.7-alpine
+FROM node:latest
 
-COPY app/frontend/ /usr/share/nginx/html
-COPY app/nginx.conf /etc/nginx/conf.d/default.conf
+RUN mkdir /app
+COPY app/ /app 
+WORKDIR /app
 
+RUN npm i
+RUN npm install @skalenetwork/filestorage-js
 EXPOSE 80
+CMD ["node","app.js"]
