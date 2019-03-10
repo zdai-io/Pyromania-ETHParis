@@ -57,6 +57,7 @@ async function onInit() {
 
   updateLockAndBurnButtonsState();
   updateListOfBurned();
+  updateAshes();
 
   $("#slcBurnToken").on('change', () => {
     updateLockAndBurnButtonsState();
@@ -65,6 +66,7 @@ async function onInit() {
   setInterval(() => {
       updateLockAndBurnButtonsState();
       updateListOfBurned();
+      updateAshes();
     }, 1000);
 
   $("#unlockBtn").click(function () {
@@ -100,6 +102,12 @@ async function onInit() {
   // Pyro token poling
   renewPyroBalance();
   setInterval(renewPyroBalance, 1000);
+}
+
+function updateAshes() {
+  window.furanceToken.methods.ashes().call().then( (result) => {
+    $("#freeSlotsCount").text(result);
+  })
 }
 
 function updateListOfBurned() {
@@ -146,12 +154,16 @@ function renewPyroBalance() {
       window.pyroBalance = ethBalance;
 
       if(isPyroBalanceeInitialized){
+
         // Run Animation
         $("#status").clearQueue().queue(function (next) {
           $(this).addClass("alert"); next();
         }).delay(500).queue(function (next) {
           $(this).removeClass("alert"); next();
         });
+
+        // Show Congratulation modal
+        Congratulation();
       }
       window.isPyroBalanceeInitialized = true;
     }
