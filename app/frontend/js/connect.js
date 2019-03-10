@@ -58,8 +58,10 @@ async function onInit() {
     const x = await isUnlocked(token, myAddress, spender);
 
     const unlockBtn = $("#unlockBtn");
+    const burnBtn=$("#burnBtn");
     unlockBtn.prop('disabled', x);
-    unlockBtn.text(x ? "Unlocked" : "Unlock");
+    burnBtn.prop('disabled', !x);
+    unlockBtn.html(x ? "&#128275;Unlocked" : "&#128274;Unlock");
 
   } catch (err) {
     console.error(err);
