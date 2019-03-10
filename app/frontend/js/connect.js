@@ -57,13 +57,6 @@ async function onInit() {
 
   updateLockAndBurnButtonsState();
   $("#slcBurnToken").on('change', () => {
-
-    $("#status").clearQueue().queue(function (next) {
-      $(this).addClass("alert"); next();
-    }).delay(500).queue(function (next) {
-      $(this).removeClass("alert"); next();
-    });
-
     updateLockAndBurnButtonsState();
   });
   setInterval(updateLockAndBurnButtonsState, 1000);
@@ -115,9 +108,28 @@ async function updateLockAndBurnButtonsState() {
   console.log(tokenIsUnlocked);
 }
 
+window.isPyroBalcnceInitialized = false;
+window.pyroBalcnce = "";
 function renewPyroBalance() {
   pyroToken.methods.balanceOf(myAddress).call().then((balance) => {
-    $("#pyroBalance").text(`${web3.fromWei(balance, 'ether')} Pyro`)
+
+    const ethBalance = web3.fromWei(balance, 'ether').toString();
+    $("#pyroBalance").text(`${ethBalance} Pyro`);
+
+    if(window.pyroBalcnce !== ethBalance ){
+      window.pyroBalcnce = ethBalance;
+
+      if(isPyroBalcnceInitialized){
+        // Run Animation
+        $("#status").clearQueue().queue(function (next) {
+          $(this).addClass("alert"); next();
+        }).delay(500).queue(function (next) {
+          $(this).removeClass("alert"); next();
+        });
+      }
+
+      window.isPyroBalcnceInitialized = true;
+    }
   });
 }
 
