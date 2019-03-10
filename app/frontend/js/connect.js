@@ -55,10 +55,15 @@ async function onInit() {
     return
   }
 
-
-
   updateLockAndBurnButtonsState();
   $("#slcBurnToken").on('change', () => {
+
+    $("#status").clearQueue().queue(function (next) {
+      $(this).addClass("alert"); next();
+    }).delay(500).queue(function (next) {
+      $(this).removeClass("alert"); next();
+    });
+
     updateLockAndBurnButtonsState();
   });
   setInterval(updateLockAndBurnButtonsState, 1000);
