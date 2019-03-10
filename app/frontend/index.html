@@ -23,6 +23,23 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://instant.0x.org/instant.js"></script>
 
+  <style type="text/css">
+    #status {
+      padding: 5px;
+      text-align: center;
+
+      -webkit-transition: background-color 200ms linear;
+      -moz-transition: background-color 200ms linear;
+      -o-transition: background-color 200ms linear;
+      -ms-transition: background-color 200ms linear;
+      transition: background-color 200ms linear;
+    }
+
+    #status.alert {
+      background: #ff3916; /* IE */
+      background: rgba(255, 57, 22, 0.5); /* Everyone else */
+    }
+  </style>
 </head>
 
 <body>
@@ -61,8 +78,8 @@
 
     <section class="testimonials text-center bg-dark">
         <div class="container">
-          <h2 class="mb-5 text-white">
-            <span>Your balance is </span>:&nbsp;<span id="pyroBalance">0 Pyro</span>
+          <h2 class="mb-5 text-white" id="status">
+            <span>Your balance is:</span>&nbsp;<span id="pyroBalance">0 Pyro</span>
           </h2>
             <table class="burned-table table table-dark">
                 <thead>
