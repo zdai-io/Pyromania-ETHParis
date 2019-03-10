@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700|Material+Icons">
+    <title>Burn Token</title>
+</head>
+<body>
+
+<div id="choose_token" class="container">
+    <div class="row">
+        <div style="margin-top: 190px" class="col-12 text-center">
+            <h2>Pick your token</h2>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-lg" onclick="checkThatIsLocked(1)">CAT</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="checkThatIsLocked(2)">ASTS</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="checkThatIsLocked(3)">TNS</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="checkThatIsLocked(4)">TRST</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="checkThatIsLocked(5)">BCS</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="choose_sum" style="display: none" class="container">
+    <div class="row">
+        <div style="margin-top: 190px" class="col-12 text-center">
+            <label for="token_amount">
+                <h2>Enter token amount</h2>
+            </label>
+            <input type="number" class="form-control" id="token_amount">
+            <br>
+            <br>
+            <button class="btn btn-secondary btn-lg" onclick="displayEstimatedAmount()">Calculated estimated amount
+            </button>
+            <br>
+            <br>
+            <h2 id="amount_est">Estimated amount is</h2>
+        </div>
+    </div>
+</div>
+
+
+<div id="buy" style="display: none" class="container">
+    <div class="row">
+        <div style="margin-top: 10px" class="col-12 text-center">
+            <button class="btn btn-secondary btn-lg">Make a tx</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="locked" style="display: none">
+    <div class="row">
+        <div style="margin-top: 50px" class="col-12 text-center">
+            <i class="material-icons" style="font-size:80px;color:black;">https</i>
+            <h2>Token is locked</h2>
+            <button type="button" class="btn btn-secondary btn-lg" onclick="unlockToken()">Unlock</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    var TokenId;
+
+    function checkThatIsLocked(tokenId) {
+
+      var data = tokensList[tokenId].address;
+
+        if (tokenId === 3) {
+            TokenId = tokenId;
+            $("#choose_token").hide();
+            $("#locked").show();
+        }
+        else {
+            $("#choose_token").hide();
+            $("#choose_sum").show();
+        }
+    }
+
+    function unlockToken() {
+        $("#choose_sum").show();
+        $("#locked").hide();
+    }
+
+    function displayEstimatedAmount() {
+        let sum = $("#token_amount").val();
+        console.log(sum);
+        newSum = sum * 100;
+        $("#amount_est").append(" " + newSum.toString());
+        $("#buy").show();
+    }
+
+</script>
+</body>
+</html>
