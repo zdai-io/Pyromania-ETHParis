@@ -1,6 +1,6 @@
-$(document).ready(function() {
-  UpdateFreeSlots(100);
-});
+// $(document).ready(function() {
+//   UpdateFreeSlots(100);
+// });
 
 // (async () => {
 //   const accounts = await web3.eth.getAccounts();
@@ -43,45 +43,46 @@ $(document).ready(function() {
 // })();
 //   process.exit();
 
-async function CheckAllowance(){
-  const tokenAddress = $('#slcBurnToken').val();
+// async function CheckAllowance(){
+//   const tokenAddress = $('#slcBurnToken').val();
+//
+//   var spender = '';
+//   const allowance = await fuelToken.methods.allowance(myAddress, spender).call();
+// }
 
-  var spender = '';
-  const allowance = await fuelToken.methods.allowance(myAddress, spender).call();
-}
+// async function Unlock(){
+//   try {
+//     const tokenAddress = $('#slcBurnToken').val();
+//     const tokenAmount = $('#iptBurnToken').val();
+//
+//     // var x = fuelTokenAbi;
+//     // var y = furanceAbi;
+//
+//     const token = new w3.eth.Contract(fuelTokenData.abi);
+//     const accounts = await w3.eth.getAccounts();
+//     myAddress = accounts[0];
+//     const owner = myAddress;
+//     const spender = myAddress;
+//
+//     const allowance = await token.methods.allowance(owner, spender).call();
+//     return toBN(allowance).gte(toBN("57896044618658097711785492504343953926634992332820282019728792003956564819968"));
+//
+//     // Call Approve on SC
+//
+//     // After some logic
+//     UpdateResultAmount(1000);
+//
+//   } catch (err) { alert(err.message);  }
+// }
+//
+// function UpdateResultAmount(amount) {
+//     $('#iptResToken').val(amount);
+// }
 
-async function Unlock(){
-  try {
-    const tokenAddress = $('#slcBurnToken').val();
-    const tokenAmount = $('#iptBurnToken').val();
 
-    // var x = fuelTokenAbi;
-    // var y = furanceAbi;
-
-    const token = new w3.eth.Contract(fuelTokenData.abi);
-    const accounts = await w3.eth.getAccounts();
-    myAddress = accounts[0];
-    const owner = myAddress;
-    const spender = myAddress;
-
-    const allowance = await token.methods.allowance(owner, spender).call();
-    return toBN(allowance).gte(toBN("57896044618658097711785492504343953926634992332820282019728792003956564819968"));
-
-    // Call Approve on SC
-
-    // After some logic
-    UpdateResultAmount(1000);
-
-  } catch (err) { alert(err.message);  }
-}
-
-function UpdateResultAmount(amount) {
-    $('#iptResToken').val(amount);
-}
-
-function UpdateFreeSlots(amount){
-  $("#freeSlotsCount").text(amount);
-}
+// function UpdateFreeSlots(amount){
+//   $("#freeSlotsCount").text(amount);
+// }
 
 function BuyOn0x(){
   window.open("./0x.html");
