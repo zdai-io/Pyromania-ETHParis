@@ -165,7 +165,15 @@ Cryptoeconimic math way differs from classic economic. Please look into the desc
 
 - Add voting system, to add new tokens
 
+### Thanks
+
+- to Roman Semenov, Alexey Levin and Alexander Khlebuschev for math modeldiscussion
+- to Button Wallet for help with frontend
+
 ### Links:
 - Here is token analytics, that we made: https://docs.google.com/spreadsheets/d/1P-UbU08wB2RcWa1g7hJWoUEzLh3r-RunKxJvWFQrFq0
 - hackmd with Moon math under the hood: https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
 - The site posted here: https://Pyromania.io
+
+
+
