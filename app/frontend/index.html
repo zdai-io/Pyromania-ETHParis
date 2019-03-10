@@ -64,7 +64,7 @@
                   <button type="button" class="btn btn-block btn-primary" id="unlockBtn">Unlock</button>
                 </div>
                 <div class="col-12 col-md-4 mb-2 mb-md-0" style="padding-right: 0px;">
-                  <input type="text" class="form-control" placeholder="To burn" id="iptResToken">
+                  <button type="text" class="form-control" placeholder="To burn" id="iptResToken">
                 </div>
                 <div class="col-12 col-md-3" style="padding-left: 10px;">
                   <button type="button" class="btn btn-block btn-primary" id="burnBtn">	&#128293;Burn</button>
@@ -95,17 +95,15 @@
               <div>
                 <div class="row">
                   <div class="col-6 text-white buyTokenLine">
-                    Buy tokens on
-                    <a href="https://www.bancor.network/?orderBy=liquidityDepth&orderDirection=asc">
-                      <img src="./assets/bancor.png" height="30"/>
+                    <a class="btn btn-primary btn-default" href="https://www.bancor.network/?orderBy=liquidityDepth&orderDirection=asc">
+                      Buy tokens on <img src="./assets/bancor.png" height="30" style="padding-left: 5px;"/>
                     </a>
                   </div>
                   <div class="col-6 text-white">
-                      Buy AC token on
-                      <a href=>
-                        <img src="./assets/0x.png" height="30" onclick="BuyOn0x()"/>
+                      <a onclick="BuyOn0x()" class="btn btn-primary btn-default">
+                          Buy AC token on<img src="./assets/0x.png" height="30" style="padding-left: 5px;"/>
                       </a>
-                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-12"></div>
