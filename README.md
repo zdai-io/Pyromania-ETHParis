@@ -24,6 +24,9 @@ We did token analytics and pick some low trading tokens. (+ some token from 0x, 
 > Aeternity
 > Early contributors to ethereum branched out and chose to launch a separate blockchain. The project raised funds during an ICO in the midst of ERC-20 ICO-craze. However, ultimately, existing on a separate chain meant not being part of the ecosystem and the project remains obscure. The price of a token went up and down with the mania and wobbles around the ICO-levels. However, hardly there are any Dapps written in Sophia smart contract programming language that are known to community.
 
+![Liberty Leading the People]("https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Eug%C3%A8ne_Delacroix_-_La_libert%C3%A9_guidant_le_peuple.jpg?raw=true")
+
+
 ## How we built it
 
 Gang of four with super skills in: solidity, node.js, ens, kubernetes, redis, 0x, skale and so on.
