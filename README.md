@@ -2,13 +2,13 @@
 ](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/logo_pure_time_moto.jpg?raw=true "What is dead may never DAI.
 ")
 
-# Pyromania - Time to burn
+# Pyromania - Time to burn: 
+
+## https://pyromania.io
 
 ## Our contracts at MainNet
 https://etherscan.io/address/0x22f298b0c4d7bd8b939bc703a365b704df45e3a1 - Furance contract, burning tokens
 https://etherscan.io/token/0x5e4dd41c7b32d6cf86fa6b511187fe97ed7b6acc - PYRO token, a new proof of burn cryptocurrency
-
-https://etherscan.io/tx/0x9bf2066c2f79705bc73685168fda35a09daa56d73ce48bfaa64db9ef2cb1a2bc - ENS transaction for pyromania.eth. Please, do not bid it ;)
 
 
 ## Inspiration
@@ -38,18 +38,13 @@ There is a massive amount of tokens in ETH workspace. Some of them become almost
 Square root dependency:
 
 1 🧸  = 1🔥
+
 100 🧸 = 10🔥
+
 10 000 🧸= 100🔥
 
 
 - As fast (by day) people burn then - as fewer people get. (integral by T is there)
-
-
-### Moon 🌒 math with formulas placed here:
- https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
-
-![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
-![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
 
 
 ## What it does
@@ -68,6 +63,26 @@ We did token analytics and pick some low trading tokens. (+ some token from 0x, 
 ![Liberty Leading the People](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Liberty%20Leading%20the%20People_chart.jpg?raw=true "Liberty Leading the People
 ")
 
+---
+
+## Sponsors prozes:
+
+### ENS Domain
+https://etherscan.io/tx/0x9bf2066c2f79705bc73685168fda35a09daa56d73ce48bfaa64db9ef2cb1a2bc - ENS transaction for pyromania.eth. Please, do not bid it ;)
+
+### 0x instant (http://0x.org/instant) 
+We've done integration with 0x protocol. So you can easily buy any kind of tokens.
+
+### Skale
+We connect decentrlised hosting from Skale!
+Here is a adresses to files:
+
+> E1C12463ce9152a33fA758571595fF7fe2f047B6/index.html
+
+> E1C12463ce9152a33fA758571595fF7fe2f047B6/0x.html
+
+> E1C12463ce9152a33fA758571595fF7fe2f047B6/index2.html
+
 
 ## How we built it
 
@@ -81,6 +96,15 @@ Cryptoeconimic math way differs from classic economic. Please look into the desc
 
 - Pure math under the hood
 - Ability to clean up blockchain and free-up space
+
+
+### Moon 🌒 math with formulas placed here:
+ https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
+
+![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
+![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
+
+
 
 ## Pyromania math model (https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#)
 
