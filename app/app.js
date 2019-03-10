@@ -14,7 +14,6 @@ const app = express();
 
 app.use(express.static(__dirname + '/frontend'));
 
-
 app.get("/delete/0x", async (req, res, next) => {
     let info = await dF.deleteFile("0x.html");
     console.log(info)
@@ -36,9 +35,9 @@ app.get("/upload/index", async (req, res, next) => {
     console.log(info)
 });
 
-app.get("/", async (req, res, next) => {
+app.get("/scale", async (req, res, next) => {
 
-        let bf = await skaleFS.downloadFileIntoBuffer("E1C12463ce9152a33fA758571595fF7fe2f047B6/index.html", true);
+    let bf = await skaleFS.downloadFileIntoBuffer("E1C12463ce9152a33fA758571595fF7fe2f047B6/index.html", true);
 
     fs.writeFileSync(__dirname + "/skaleFiles/index.html", bf.toString(), 'utf8', function(err) {
         if(err) {
