@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pyrotoken</title>
+
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/landing-page.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://instant.0x.org/instant.js"></script>
+
+  <style type="text/css">
+    #status {
+      padding: 5px;
+      text-align: center;
+
+      -webkit-transition: background-color 200ms linear;
+      -moz-transition: background-color 200ms linear;
+      -o-transition: background-color 200ms linear;
+      -ms-transition: background-color 200ms linear;
+      transition: background-color 200ms linear;
+    }
+
+    #status.alert {
+      background: #ff3916; /* IE */
+      background: rgba(255, 57, 22, 0.5); /* Everyone else */
+    }
+  </style>
+</head>
+
+<body>
+   <!-- Masthead -->
+   <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Kill it with fire !!!</h1>
+            <h1 class="mb-5">To get Pyro Tokens!!!</h1>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="row">
+
+                <div class="col-12 col-md-2 mb-2 mb-md-0">
+                  <select style="width: 100px" class="form-control" id="slcBurnToken">
+                  </select>
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="button" class="btn btn-block btn-primary" id="unlockBtn">Unlock</button>
+                </div>
+                <div class="col-12 col-md-4 mb-2 mb-md-0" style="padding-right: 0px;">
+                  <input type="number" class="form-control" placeholder="To burn" id="iptResToken" min="0" data-bind="value:replyNumber"  />
+                </div>
+                <div class="col-12 col-md-3" style="padding-left: 10px;">
+                  <button type="button" class="btn btn-block btn-primary" id="burnBtn">	&#128293;Burn</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="testimonials text-center bg-dark">
+        <div class="container">
+          <h2 class="mb-5 text-white" id="status" style="margin-bottom: 2rem!important;">
+            <span>Your balance is:</span>&nbsp;<span id="pyroBalance">0 Pyro</span>
+          </h2>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="burned-table table table-dark table-fixed">
+                <thead>
+                    <tr>
+                      <th scope="col">Ticker</th>
+                      <th scope="col">Burned</th>
+                      <th scope="col">Minted</th>
+                    </tr>
+                  </thead>
+                <tbody id="tableContent">
+                </tbody>
+              </table>
+            </div>
+              <div>
+                <div class="row">
+                  <div class="col-6 text-white buyTokenLine">
+                    <a class="btn btn-primary btn-default" href="https://www.bancor.network/?orderBy=liquidityDepth&orderDirection=asc">
+                      Buy tokens on <img src="./assets/bancor.png" height="30" style="padding-left: 5px;"/>
+                    </a>
+                  </div>
+                  <div class="col-6 text-white">
+                      <a onclick="BuyOn0x()" class="btn btn-primary btn-default">
+                          Buy AC token on<img src="./assets/0x.png" height="30" style="padding-left: 5px;"/>
+                      </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="text-white">At least <span id="freeSlotsCount"></span> slots released!</h4>
+                </div>
+              </div>
+        </div>
+    </section>
+  <!-- Testimonials -->
+  <!--<section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">What people are saying...</h2>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
+              <h5>Margaret E.</h5>
+              <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
+              <h5>Fred S.</h5>
+              <p class="font-weight-light mb-0">"Pyrotoken is amazing. I've been using it to create burn all my shit tokens."</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
+              <h5>Sarah W.</h5>
+              <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+  <!-- <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; ГориВсеогнемПродакшн 2019. All Rights Reserved.</p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-facebook fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-instagram fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+<!--
+    <div class="container">
+        <div class="row">
+          <div class="col2"></div>
+          <div class="col">
+            <h1>
+                Pyrotoken
+            </h1>
+            <h2>
+                Moto
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <select id="slcBurnToken">
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" id="iptBurnToken" value=0 />
+          </div>
+          <div class="col">
+            <input type="button" value="unlock" id="btnUnlock"  onclick="Unlock()"/>
+          </div>
+          <div class="col">
+            <p>-></p>
+          </div>
+          <div class="col">
+            <input type="text" id="iptResToken" value=0 />
+          </div>
+          <div class="col">
+            <input type="button" value="burn" id="btnBurn" onclick="Burn()"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <table>
+              <tr>
+                <td>list of </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div> -->
+      <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                  <div style="width:100%;height:0;padding-bottom:75%;position:relative;">
+                    <iframe src="https://giphy.com/embed/XvQXEi09zfmcE" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
+                    </iframe>
+                  </div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/furance.data.js"></script>
+  <script src="js/fueltoken.data.js"></script>
+  <script src="js/pyrotoken.data.js"></script>
+  <script src="js/connect.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/index.js"></script>
+  <script src="json/shitTokens.js"></script>
+  <script src="json/burnResults.js"></script>
+
+</body>
+
+</html>
