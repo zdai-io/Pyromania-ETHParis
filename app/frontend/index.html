@@ -78,20 +78,22 @@
 
     <section class="testimonials text-center bg-dark">
         <div class="container">
-          <h2 class="mb-5 text-white" id="status">
+          <h2 class="mb-5 text-white" id="status" style="margin-bottom: 2rem!important;">
             <span>Your balance is:</span>&nbsp;<span id="pyroBalance">0 Pyro</span>
           </h2>
-            <table class="burned-table table table-dark">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="burned-table table table-dark table-fixed">
                 <thead>
-                  <tr>
-                    <th scope="col">Ticker</th>
-                    <th scope="col">Burned</th>
-                    <th scope="col">Minted</th>
-                  </tr>
-                </thead>
+                    <tr>
+                      <th scope="col">Ticker</th>
+                      <th scope="col">Burned</th>
+                      <th scope="col">Minted</th>
+                    </tr>
+                  </thead>
                 <tbody id="tableContent">
                 </tbody>
               </table>
+            </div>
               <div>
                 <div class="row">
                   <div class="col-6 text-white buyTokenLine">
@@ -101,7 +103,7 @@
                   </div>
                   <div class="col-6 text-white">
                       <a onclick="BuyOn0x()" class="btn btn-primary btn-default">
-                          Buy AC token on<img src="./assets/0x.png" height="30" style="padding-left: 5px;"/>
+                          Buy AC token on<img src="./assets/0x.jpg" height="30" style="padding-left: 5px;"/>
                       </a>
                   </div>
                 </div>

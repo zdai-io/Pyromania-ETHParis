@@ -1,10 +1,15 @@
 ![What is dead may never DAI.
-](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/header.png?raw=true "What is dead may never DAI.
+](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/logo_pure_time_moto.jpg?raw=true "What is dead may never DAI.
 ")
 
-
-
 # Pyromania - Time to burn
+
+## Our contracts at MainNet
+https://etherscan.io/address/0x22f298b0c4d7bd8b939bc703a365b704df45e3a1 - Furance contract, burning tokens
+https://etherscan.io/token/0x5e4dd41c7b32d6cf86fa6b511187fe97ed7b6acc - PYRO token, new proof of burn cryptocurrency
+
+https://etherscan.io/tx/0x9bf2066c2f79705bc73685168fda35a09daa56d73ce48bfaa64db9ef2cb1a2bc - ENS transaction for pyromania.eth. Please, do not bid it ;)
+
 
 ## Inspiration
 
@@ -24,7 +29,8 @@ We did token analytics and pick some low trading tokens. (+ some token from 0x, 
 > Aeternity
 > Early contributors to ethereum branched out and chose to launch a separate blockchain. The project raised funds during an ICO in the midst of ERC-20 ICO-craze. However, ultimately, existing on a separate chain meant not being part of the ecosystem and the project remains obscure. The price of a token went up and down with the mania and wobbles around the ICO-levels. However, hardly there are any Dapps written in Sophia smart contract programming language that are known to community.
 
-![Liberty Leading the People]("https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Eug%C3%A8ne_Delacroix_-_La_libert%C3%A9_guidant_le_peuple.jpg?raw=true")
+![Liberty Leading the People](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Liberty%20Leading%20the%20People_chart.jpg?raw=true "Liberty Leading the People
+")
 
 
 ## How we built it

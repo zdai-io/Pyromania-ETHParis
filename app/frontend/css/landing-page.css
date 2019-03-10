@@ -19,6 +19,9 @@ body {
   border-color: #dc3545;
 }
 
+.masthead .container{
+  margin-top: -10rem;
+}
 h1,
 h2,
 h3,
@@ -144,4 +147,14 @@ header.masthead h1 {
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+  margin-bottom: 2rem;
+}
+.table-wrapper-scroll-y {
+  display: block;
 }
