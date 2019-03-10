@@ -4,12 +4,12 @@
 var w3, myAddress, myContract;
 
 const furanceAddresses = {
-  main: "??",
+  main: "0x22f298b0c4d7bd8b939bc703a365b704df45e3a1",
   rinkeby: "0x3d5726c8CFd711788605078C2B9b87D5BC7161A8",
 };
 
 const pyroAddresses = {
-  main: "??",
+  main: "0x54ed6d05b6ade0b39d0913ac6876e6cf16ae89a0",
   rinkeby: "0x5efC080ADc2e14285D7FA1DD551aC4088cc64d8f",
 };
 
