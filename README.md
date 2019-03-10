@@ -1,3 +1,9 @@
+![What is dead may never DAI.
+](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/header.png?raw=true "What is dead may never DAI.
+")
+
+
+
 # Pyromania - Time to burn
 
 ## Inspiration
