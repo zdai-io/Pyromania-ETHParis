@@ -56,12 +56,16 @@ async function onInit() {
   }
 
   updateLockAndBurnButtonsState();
-  $("#slcBurnToken").on('change', () => {
-    updateListOfBurned();
+  updateListOfBurned();
 
+  $("#slcBurnToken").on('change', () => {
     updateLockAndBurnButtonsState();
   });
-  setInterval(updateLockAndBurnButtonsState, 1000);
+
+  setInterval(() => {
+      updateLockAndBurnButtonsState();
+      updateListOfBurned();
+    }, 1000);
 
   $("#unlockBtn").click(function () {
 
