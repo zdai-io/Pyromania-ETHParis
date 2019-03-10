@@ -20,6 +20,13 @@ var shitTokens = {
       "marketCup": 685000,
       "totalSupply": 10000000,
       "address": "0x98bde3a768401260e7025faf9947ef1b81295519"
+    },
+    {
+      "tiker": "AE",
+      "name": "Aeternity",
+      "marketCup": 123704464,
+      "totalSupply": 273685830,
+      "address": "0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d"
     }
   ],
   "rinkeby": [
