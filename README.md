@@ -167,7 +167,7 @@ Cryptoeconimic math way differs from classic economic. Please look into the desc
 
 ### Thanks
 
-- to Roman Semenov, Alexey Levin and Alexander Khlebuschev for math modeldiscussion
+- to Roman Semenov, Alexey Levin and Alexander Khlebuschev for math model discussion
 - to Button Wallet for help with frontend
 
 ### Links:
