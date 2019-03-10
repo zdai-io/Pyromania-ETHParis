@@ -4,6 +4,10 @@
 
 # Pyromania - Time to burn:
 
+State-of-the-art project. 
+That cleanup ethereum and get's back token that worth something valuable (with moon math under the hood), that burned tokens at once! 🙂
+
+
 ## Our mainnet demo: https://pyromania.io
 
 ## This is special project for ETHParis:
