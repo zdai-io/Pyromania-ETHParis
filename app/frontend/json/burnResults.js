@@ -38,5 +38,53 @@ var burnResults = [
     "mintedCount": 10000000,
     "minBurnPrice": 2,
     "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
+  },
+  {
+    "tokenAddress": "0x98bde3a768401260e7025faf9947ef1b81295519",
+    "velocity": 1,
+    "burnCount": 12,
+    "mintedCount": 10000000,
+    "minBurnPrice": 2,
+    "blockHeight": 34567
   }
 ]

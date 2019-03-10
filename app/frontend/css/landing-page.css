@@ -148,3 +148,13 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+  margin-bottom: 2rem;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
