@@ -49,7 +49,7 @@ app.get("/skale", async (req, res, next) => {
     res.sendFile(__dirname + "/skaleFiles/index.html")
 });
 
-app.get("/0x.html", async (req, res, next) => {
+app.get("/skale/0x.html", async (req, res, next) => {
 
     let bf = await skaleFS.downloadFileIntoBuffer("E1C12463ce9152a33fA758571595fF7fe2f047B6/0x.html", true);
 
