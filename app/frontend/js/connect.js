@@ -50,24 +50,18 @@ async function onInit() {
       tokens[item.address] = new w3.eth.Contract(fuelTokenData.abi, item.address, {from: myAddress});
     });
 
-
-    const tokenAddress = $('#slcBurnToken').val();
-    const token = tokens[tokenAddress];
-
-
-    const x = await isUnlocked(token, myAddress, spender);
-
-    const unlockBtn = $("#unlockBtn");
-    const burnBtn=$("#burnBtn");
-    unlockBtn.prop('disabled', x);
-    burnBtn.prop('disabled', !x);
-    unlockBtn.html(x ? "&#128275;Unlocked" : "&#128274;Unlock");
-
   } catch (err) {
     console.error(err);
     return
   }
 
+
+
+  updateLockAndBurnButtonsState();
+  $("#slcBurnToken").on('change', () => {
+    updateLockAndBurnButtonsState();
+  });
+  setInterval(updateLockAndBurnButtonsState, 1000);
 
   $("#unlockBtn").click(function () {
 
@@ -102,15 +96,29 @@ async function onInit() {
   startPyroTokenPolling();
 }
 
+async function updateLockAndBurnButtonsState() {
+  const tokenAddress = $('#slcBurnToken').val();
+  const token = tokens[tokenAddress];
+
+  const tokenIsUnlocked = await isUnlocked(token, myAddress, spender);
+  const unlockBtn = $("#unlockBtn");
+  const burnBtn = $("#burnBtn");
+
+  unlockBtn.prop('disabled', tokenIsUnlocked);
+  burnBtn.prop('disabled', !tokenIsUnlocked);
+  unlockBtn.html(tokenIsUnlocked ? "Unlocked &#128275;" : "Unlock");
+  console.log(tokenIsUnlocked);
+}
 
 function renewPyroBalance() {
   pyroToken.methods.balanceOf(myAddress).call().then((balance) => {
-    $("#pyroBalance").text(`${web3.fromWei(balance,'ether')} Pyro`)
+    $("#pyroBalance").text(`${web3.fromWei(balance, 'ether')} Pyro`)
   });
 }
+
 function startPyroTokenPolling() {
   renewPyroBalance();
-  setInterval(renewPyroBalance, 1500);
+  setInterval(renewPyroBalance, 1000);
 }
 
 async function isUnlocked(token, owner, spender) {
