@@ -120,3 +120,8 @@ function BuyOn0x(){
   //   defaultSelectedAssetData: '0xf47261b00000000000000000000000005ca9a71b1d01849c0a95490cc00559717fcf0d1d',
   //   }, 'body');
 }
+
+function Congratulation(){
+  $('#myModal').modal();
+  setTimeout(function() {$('#myModal').modal('hide');}, 3000);
+}
