@@ -8,6 +8,11 @@ const furanceAddresses = {
   rinkeby: "0x3d5726c8CFd711788605078C2B9b87D5BC7161A8",
 };
 
+const tokens = {
+  // address : tokenObj
+  // Here we put tokens objects that we will initialize using addresses
+};
+
 // Leave as it .ready can't handle properly function that returns Promise
 $(document).ready(() => {
   onInit()
@@ -22,6 +27,10 @@ async function onInit() {
     window.myAddress = accounts[0]; // Получаем адрес кошелька, выбранного в Метамаске
     window.spender = furanceAddresses[networkName];
 
+    window.toBN = w3.utils.toBN;
+    window.toWei = w3.utils.toWei;
+    window.fromWei = w3.utils.fromWei;
+
     // window.fuelToken = new w3.eth.Contract(fuelTokenData.abi, furanceAddresses[networkName], {from: myAddress});
     window.furanceToken = new w3.eth.Contract(furanceData.abi, furanceAddresses[networkName], {from: myAddress});
 
@@ -31,7 +40,19 @@ async function onInit() {
 
     shitTokens[networkName].forEach((item) => {
       $('#slcBurnToken').append($(`<option value="${item.address}">${item.tiker}</option>`));
+      tokens[item.address] = new w3.eth.Contract(fuelTokenData.abi, item.address, {from: myAddress});
     });
+
+
+    const tokenAddress = $('#slcBurnToken').val();
+    const token = tokens[tokenAddress];
+
+
+    const x = await isUnlocked(token, myAddress, spender);
+
+    const unlockBtn = $("#unlockBtn");
+    unlockBtn.prop('disabled', x);
+    unlockBtn.text(x ? "Unlocked" : "Unlock");
 
   } catch (err) {
     console.error(err);
@@ -42,7 +63,15 @@ async function onInit() {
   $("#unlockBtn").click(function () {
 
     const tokenAddress = $('#slcBurnToken').val();
-    const token = new w3.eth.Contract(fuelTokenData.abi, tokenAddress, {from: myAddress});
+    const token = tokens[tokenAddress];
+
+    // var x = token.methods
+    //   .transfer("0x9A75BCcb9046827A9Ee9C5038b9aF16E3044b629", "0")
+    //   .send().then(
+    //     (result) => {
+    //       debugger
+    //     }
+    //   );
 
     increaseAllowance(token)
       .then(() => {
@@ -51,15 +80,22 @@ async function onInit() {
   });
 
   $("#burnBtn").click(function () {
-    const tokenAmount = $('#iptBurnToken').val();
-    burn(tokenAmount);
+    const tokenAmount = $('#iptResToken').val();
+    const tokenAddress = $('#slcBurnToken').val();
+    const token = tokens[tokenAddress];
+
+    burn(token, tokenAmount).then(() => {
+      console.log("was burned")
+    });
   })
 }
 
+async function isUnlocked(token, owner, spender) {
+  const allowance = await token.methods.allowance(owner, spender).call();
+  return toBN(allowance).gte(toBN("57896044618658097711785492504343953926634992332820282019728792003956564819968"));
+}
+
 async function burn(token, burnAmountInEther) {
-  const toBN = w3.utils.toBN;
-  const toWei = w3.utils.toWei;
-  const fromWei = w3.utils.fromWei;
 
   //let estimated = await furance.methods.estimateMintAmount(fuel.options.address, burnAmount).call();
   // console.log(estimated);
