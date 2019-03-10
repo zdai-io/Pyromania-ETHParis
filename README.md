@@ -38,7 +38,9 @@ There is a massive amount of tokens in ETH workspace. Some of them become almost
 Square root dependency:
 
 1 🧸  = 1🔥
+
 100 🧸 = 10🔥
+
 10 000 🧸= 100🔥
 
 
