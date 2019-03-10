@@ -47,13 +47,6 @@ Square root dependency:
 - As fast (by day) people burn then - as fewer people get. (integral by T is there)
 
 
-### Moon 🌒 math with formulas placed here:
- https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
-
-![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
-![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
-
-
 ## What it does
 
 We made 100% recyclable token: By deep-math crypto-economics under the hood - we buidl token, that cleanup whole blockchain ecosystem.
@@ -103,6 +96,15 @@ Cryptoeconimic math way differs from classic economic. Please look into the desc
 
 - Pure math under the hood
 - Ability to clean up blockchain and free-up space
+
+
+### Moon 🌒 math with formulas placed here:
+ https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
+
+![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
+![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
+
+
 
 ## Pyromania math model (https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#)
 
