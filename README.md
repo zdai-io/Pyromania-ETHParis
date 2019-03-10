@@ -16,6 +16,39 @@ https://etherscan.io/tx/0x9bf2066c2f79705bc73685168fda35a09daa56d73ce48bfaa64db9
 What is dead may never DAI.
 There is a huge amount of tokens in ETH workspace. Some of them become almost useless.
 
+## Benefits:
+
+### Why it's good for ecosystem:
+
+1. As old furniture (sometimes) - Old tokens got collecitble value! 🏺
+2. We are free up ethereum `storage`. So `geth` will sync faster! 💥
+3. Gas refunded for buned token :recycle: 
+
+### Why new tokensit costs something?
+
+1. It's an Art project "Proof of Burn". A new cryptocurrency with unique "proof of burn" algo (see Moon math details below)
+
+2. Joint of liquidity bring more value.
+
+### Earth math:
+ 
+- When a lot tokens melted in one - it worth something.
+
+- As more (by amount) you burn - as less you get.
+Square root dependency:
+
+1 🧸  = 1🔥
+100 🧸 = 10🔥 
+10 000 🧸= 100🔥
+
+
+- As fast (by day) people burn then - as less people get. (integral by T is there)
+
+
+### Moon 🌒 math with formulas placed here: 
+ https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
+
+
 ## What it does
 
 We made 100% recyclable token: By deep-math crypto-economics under the hood - we buidl token, that cleanup whole blockchain ecosystem.
@@ -35,7 +68,7 @@ We did token analytics and pick some low trading tokens. (+ some token from 0x, 
 
 ## How we built it
 
-Gang of four with super skills in: solidity, node.js, ens, kubernetes, redis, 0x, skale and so on.
+Gang of four with super skills in: solidity, node.js, ens, kubernetes, redis, 0x, skale do our best by working all day and night.
 
 ## Challenges we ran into
 
@@ -46,7 +79,7 @@ Cryptoeconimic math way differs from classic economic. please look into the desc
 - Pure math under the hood
 - Ability to clean up blockchain and free-up space
 
-## Pyromania math model
+## Pyromania math model (https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#)
 
 We determine burnrate of the token as following recurrent formula:
 
