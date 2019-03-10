@@ -87,10 +87,27 @@ We made 100% recyclable token: By deep-math crypto-economics under the hood - we
 - Get's back pyro tokens, that worth money. And it even stable because of moon math under the hood!
 - Easily buy required tokens to burn from our UI (by Bankor / 0x)
 
+
 We did token analytics and pick some low trading tokens. (+ some token from 0x, with notable history)
 
 > Aeternity
 > Early contributors to ethereum branched out and chose to launch a separate blockchain. The project raised funds during an ICO in the midst of ERC-20 ICO-craze. However, ultimately, existing on a separate chain meant not being part of the ecosystem and the project remains obscure. The price of a token went up and down with the mania and wobbles around the ICO-levels. However, hardly there are any Dapps written in Sophia smart contract programming language that are known to the community.
+
+
+---
+
+### State of the ART; INSPIRED BY:
+
+
+>Artist Eugène Delacroix
+
+>Year 1830
+
+>Liberty Leading the People
+
+>Location Louvre, Paris
+
+>It is considered one of the key milestones between the epochs of the Enlightenment (WE ARE HERE NOW) and Romanticism (ICO ERA).
 
 ![Liberty Leading the People](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/Liberty%20Leading%20the%20People_chart.jpg?raw=true "Liberty Leading the People
 ")
