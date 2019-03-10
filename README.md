@@ -4,7 +4,10 @@
 
 # Pyromania - Time to burn:
 
-## https://pyromania.io
+## Our mainnet demo: https://pyromania.io
+
+## This is special project for ETHParis:
+https://devpost.com/software/pyromania-time-to-burn
 
 ## Our contracts at MainNet
 https://etherscan.io/address/0x22f298b0c4d7bd8b939bc703a365b704df45e3a1 - Furance contract, burning tokens
