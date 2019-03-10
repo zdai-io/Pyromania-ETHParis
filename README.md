@@ -48,6 +48,9 @@ Square root dependency:
 ### Moon 🌒 math with formulas placed here:
  https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
 
+![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
+![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
+
 
 ## What it does
 
