@@ -80,34 +80,7 @@ Square root dependency:
 - As fast (by day) people burn then - as fewer people get. (integral by T is there)
 
 ### Moon math 🌒 with formulas placed here:
- https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#
-
-![Math](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math2.png?raw=true "Math1")
-![Math2](https://github.com/zdai-io/Pyromania-ETHParis/blob/master/img/math1.png?raw=true "Math2")
-
-
-
-## Pyromania math model (https://hackmd.io/QDB5LiioSjKE2H7KYPuhTQ#)
-
-We determine the burn rate for a token as follows:
-
-$$ r_i = r_{i-1} \alpha^{\Delta t_i} + b_i$$
-
-where $\Delta t_i$ is number of blocks between burn events, $b_i$ is amount of tokens burned by the user at the $i$th event and $\alpha \lt 1$ is a decay parameter. We set it in such a way that the rate roughly halves every day.
-
-The amount of pyrotokens to be minted and sent to user is defined as
-
-$$ c_i = a (\sqrt{r_i} - \sqrt{r_i - b_i}), $$
-
-where $a$ is scaling parameter, which is set in such a way that estimated time to burn all tokens grows as square root of token marketcap.
-
-If there is a situation where there is only one tokenholder, they can emulate minting by spending little amounts of token. To protect from this we add a new variable $\kappa$ -- a global price cap, so that $c_i/b_i$ can not be more than $\kappa$.
-
-If $c_i/b_i > \kappa$, we redefine $c_i$ as $c_i = b_i\kappa$.
-
-At each step we determine $\kappa = (\kappa_0 \omega + \sum_{i-1} c_i)/(\omega + \sum_{i-1} b_i)$, where
-
-$\kappa_0$ and $\omega$ are initial parameters.
+[Pyromania from ETHParis: proof of burn cryptocurrency under the hood](https://ethresear.ch/t/pyromania-from-ethparis-proof-of-burn-cryptocurrency-under-the-hood/5135) at [ethresear.ch](https://ethresear.ch/).
 
 ## What it does
 
